@@ -100,13 +100,24 @@ function setup() {
     right = new Paddle(winWidth - 40, winHeight);
     ball = new Ball(winHeight, winWidth);
     
-    textSize(winHeight/2);
     textAlign(CENTER, CENTER);
+    textSize(winHeight/2);
 }
 
 function draw() {
     clear();
     background(244,12,133);
+    if (score.left + score.right <= 2) {
+        textAlign(LEFT, CENTER);
+        textSize(winHeight/24);
+        text("↑w", 50, 40);
+        text("↓s", 50, 80);
+        textAlign(RIGHT, CENTER);
+        text("up arrow↑", winWidth-50, 40);
+        text("down arrow↓", winWidth-50, 80);
+        textSize(winHeight/2);
+        textAlign(CENTER, CENTER);
+    }
     scoreboard(score);
     left.update();
     right.update();
