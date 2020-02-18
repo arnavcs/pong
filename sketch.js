@@ -10,7 +10,7 @@ class Paddle {
         this.winHeight = winHeight;
         this.dimensions = {
             x: 20,
-            y: (winHeight)/3
+            y: (winHeight)/6
         };
         this.position = {
             x: xpos,
@@ -38,7 +38,7 @@ class Ball {
             y: winHeight/2
         };
         this.speed = {
-            x: 6,
+            x: 9,
             y: -6
         };
     }
@@ -55,7 +55,8 @@ function collision(ball, right, left) {
         ball.speed.y *= -1;
     } else if (ball.position.x - ball.radius < left.position.x + left.dimensions.x) {
         if (ball.position.y < left.position.y + left.dimensions.y && ball.position.y > left.position.y) {
-            ball.speed.x *= -1
+            ball.speed.x *= -1;
+            ball.speed.y = ball.speed.y - 3*(0.5 + Math.random());
         } else {
             score.right++;
             ball.position = {
@@ -63,13 +64,14 @@ function collision(ball, right, left) {
                 y: winHeight/2
             };
             ball.speed = {
-                x: 6,
+                x: Math.abs(ball.speed.x),
                 y: -6
             };
         }
     } else if (ball.position.x + ball.radius > right.position.x) {
         if (ball.position.y < right.position.y + right.dimensions.y && ball.position.y > right.position.y) {
             ball.speed.x *= -1;
+            ball.speed.y = ball.speed.y - 3*(0.5 + Math.random());
         } else {
             score.left++;
             ball.position = {
@@ -77,7 +79,7 @@ function collision(ball, right, left) {
                 y: winHeight/2
             };
             ball.speed = {
-                x: -6,
+                x: -Math.abs(ball.speed.x),
                 y: 6
             };
         }
