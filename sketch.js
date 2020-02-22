@@ -10,7 +10,7 @@ class Paddle {
         this.winHeight = winHeight;
         this.dimensions = {
             x: 20,
-            y: (winHeight)/6
+            y: (winHeight)/5
         };
         this.position = {
             x: xpos,
@@ -60,11 +60,11 @@ function collision(ball, right, left) {
         } else {
             score.right++;
             ball.position = {
-                x: winWidth/2,
+                x: right.position.x - ball.radius,
                 y: winHeight/2
             };
             ball.speed = {
-                x: Math.abs(ball.speed.x),
+                x: -Math.abs(ball.speed.x),
                 y: -6
             };
         }
@@ -75,11 +75,11 @@ function collision(ball, right, left) {
         } else {
             score.left++;
             ball.position = {
-                x: winWidth/2,
+                x: left.position.x + left.dimensions.x + ball.radius,
                 y: winHeight/2
             };
             ball.speed = {
-                x: -Math.abs(ball.speed.x),
+                x: Math.abs(ball.speed.x),
                 y: 6
             };
         }
